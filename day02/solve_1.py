@@ -19,7 +19,6 @@ def solve()->int:
     
     with open("day02/puzzle_input.txt", "r", encoding="utf-8") as input_file:
         while line := input_file.readline():
-            print(line.strip())
             total+=int(score_map[line.strip()])
     return total
 if __name__ == "__main__":
