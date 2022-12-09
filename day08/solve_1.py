@@ -6,22 +6,22 @@ def get_tree_rows(filename: str) -> list[str]:
 def is_this_central_tree_visible_from_the_edge(
     tree_rows: list[str], row: int, col: int
 ) -> bool:
-    for line_of_sight in [
-        tree_rows[row][:col],  # left
-        tree_rows[row][col + 1 :],  # right
-        "".join(tree[col] for tree in tree_rows[:row]),  # up
-        "".join(tree[col] for tree in tree_rows[row + 1 :]),  # down
-    ]:
-        if all([tree < tree_rows[row][col] for tree in line_of_sight]):
-            return True
-    return False
+    return any(
+        all(tree < tree_rows[row][col] for tree in line_of_sight)
+        for line_of_sight in [
+            tree_rows[row][:col],
+            tree_rows[row][col + 1 :],
+            "".join(tree[col] for tree in tree_rows[:row]),
+            "".join(tree[col] for tree in tree_rows[row + 1 :]),
+        ]
+    )
 
 
 def count_visible_trees(tree_rows: list[str]) -> int:
     last_tree_in_row = len(tree_rows[0]) - 1
     visible_trees = 0
     for row_index, tree_row in enumerate(tree_rows):
-        for col_index, tree_column in enumerate(tree_row):
+        for col_index, _tree_column in enumerate(tree_row):
             if row_index in [0, len(tree_rows) - 1] or col_index in [
                 0,
                 last_tree_in_row,
