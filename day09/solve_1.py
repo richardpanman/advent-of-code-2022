@@ -14,7 +14,7 @@ def move_h_sprite(sprite: list[int], direction: str) -> list[int]:
 
 
 def move_following_sprite(
-    lead_sprite: list[int], following_sprite=list[int]
+    lead_sprite: list[int], following_sprite: list[int]
 ) -> list[int]:
     if (
         abs(lead_sprite[0] - following_sprite[0]) <= 1
@@ -45,7 +45,7 @@ def solve() -> int:
     return len(tail_sprite_visited_positions)
 
 
-def get_moves_from_file(filename: str):
+def get_moves_from_file(filename: str) -> list[list[str]]:
     move_input = read_file(filename)
     return [move.split(" ") for move in move_input]
 
