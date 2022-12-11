@@ -21,6 +21,6 @@ repos:
         types: [python]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "" # Use the sha / tag you want to point at
+    rev: ""
     hooks:
       - id: mypy

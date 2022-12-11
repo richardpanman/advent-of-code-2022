@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import re
 
 
-def read_file(*, filename: str):
+def read_file(*, filename: str) -> str:
     with open(filename, "r", encoding="utf-8") as the_file:
         return the_file.read()
 
@@ -27,7 +27,7 @@ class Monkey:
             for _ in range(len(self.items))
         ]
 
-    def _calculate_new_worry_level(self, *, worry_level) -> int:
+    def _calculate_new_worry_level(self, *, worry_level: int) -> int:
         self.inspections += 1
         operand_number = (
             worry_level if self.operation[1] == Monkey.OLD else self.operation[1]
@@ -52,7 +52,7 @@ def get_numbers_from_string(the_input: str) -> list[int]:
 
 
 def get_operation_from_string(the_input: str) -> str:
-    return re.findall(r"\s([\*\+])\s", the_input)[0]
+    return str(re.findall(r"\s([\*\+])\s", the_input)[0])
 
 
 def create_monkeys(*, puzzle_input: str, worry_level_divider: int) -> list[Monkey]:
